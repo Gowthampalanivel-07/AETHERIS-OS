@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,300,400&display=swap');
+
+:root {
+  /* 🌌 Deep Space Core Palette */
+  --bg-deep:      #0A0A0F; /* Void Black */
+  --bg-primary:   #12121A; /* Deep Space Grey */
+  --bg-secondary: #0a0a0a;
+  --bg-tertiary:  #141414;
+  
+  /* 💎 Crystal Accents (Black/Grey Theme) */
+  --accent:       #f8fafc; /* Pristine White */
+  --accent-glow:  rgba(248, 250, 252, 0.3);
+  --accent-low:   rgba(248, 250, 252, 0.08);
+  --accent-2:     #94a3b8; /* Slate Grey */
+  --accent-2-glow: rgba(148, 163, 184, 0.2);
+  --accent-2-low: rgba(148, 163, 184, 0.08);
+  --emerald:      #10b981;
+  --emerald-glow: rgba(16, 185, 129, 0.3);
+  
+  /* ⚪ Neural Tones */
+  --text-pure:    #ffffff;
+  --text-high:    #e2e8f0;
+  --text-med:     #94a3b8;
+  --text-low:     #475569;
+  
+  /* 🧱 Neural Framework */
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --border-vibrant: rgba(255, 255, 255, 0.15);
+  
+  /* 🧪 Liquid Glass Morphism */
+  --glass-bg:     rgba(255,255,255,0.06); /* Graphite Glass */
+  --glass-blur:   blur(40px);
+  --glass-saturate: saturate(140%);
+  
+  /* 📏 Spacing & Radius */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 32px;
+  --r-xl: 48px;
+  --r-full: 9999px;
+  
+  /* ⚡ Kinetic Transitions */
+  --t-fast:   0.2s cubic-bezier(0.2, 0, 0, 1);
+  --t-base:   0.4s cubic-bezier(0.2, 0, 0, 1);
+  --t-slow:   0.8s cubic-bezier(0.2, 0, 0, 1);
+  --t-spring: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 🎭 AI Protocol Themes (Cinematic Colors) */
+.theme-jarvis {
+  --accent: #3b82f6; /* Blue */
+  --accent-glow: rgba(59, 130, 246, 0.4);
+  --accent-2: #60a5fa; 
+  --accent-2-glow: rgba(96, 165, 250, 0.3);
+  --bg-deep: #050b14;
+}
+
+.theme-friday {
+  --accent: #f43f5e; /* Rose / Crimson */
+  --accent-glow: rgba(244, 63, 94, 0.4);
+  --accent-2: #fb7185; 
+  --accent-2-glow: rgba(251, 113, 133, 0.3);
+  --bg-deep: #110508;
+}
+
+.theme-vision {
+  --accent: #a855f7; /* Violet */
+  --accent-glow: rgba(168, 85, 247, 0.4);
+  --accent-2: #d8b4fe; 
+  --accent-2-glow: rgba(216, 180, 254, 0.3);
+  --bg-deep: #0f0518;
+}
+
+.theme-ultron {
+  --accent: #dc2626; /* Deep Red */
+  --accent-glow: rgba(220, 38, 38, 0.5);
+  --accent-2: #f87171; 
+  --accent-2-glow: rgba(248, 113, 113, 0.4);
+  --bg-deep: #170303;
+  --glass-bg: rgba(220, 38, 38, 0.05);
+  --border-glass: rgba(220, 38, 38, 0.2);
+}
+
+.theme-ascended {
+  --accent: #ffffff; /* Absolute White */
+  --accent-glow: rgba(255, 255, 255, 0.5);
+  --accent-2: #cbd5e1; 
+  --accent-2-glow: rgba(203, 213, 225, 0.4);
+  --bg-deep: #080a0f; 
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --border-glass: rgba(255, 255, 255, 0.25);
+}
+
+/* ─── Global Reset ─── */
+*, *::before, *::after { 
+  box-sizing: border-box; 
+  margin: 0; padding: 0; 
+}
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-med);
+  font-family: 'Satoshi', sans-serif;
+  overflow: hidden; /* OS-level lock */
+  height: 100vh;
+  width: 100vw;
+  -webkit-font-smoothing: antialiased;
+  cursor: default;
+  transition: background var(--t-slow);
+}
+
+.ambient-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, var(--accent-glow) 0%, transparent 70%);
+  animation: global-breathe 6s ease-in-out infinite;
+  pointer-events: none;
+  transition: background 1.5s ease-in-out;
+}
+
+@keyframes global-breathe {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.05); }
+}
+
+/* ─── Immersive Background ─── */
+.aetheris-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--bg-deep);
+  transition: background 1.5s ease-in-out; 
+}
+
+/* ─── Spline 3D Background - Keep but soften ─── */
+.spline-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(2.8); 
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.8; /* Slight fade vs total starkness */
+  transition: opacity 2s ease-in-out;
+}
+
+.spline-bg > div, 
+.spline-bg canvas {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* Hide Spline watermark/logo anchor */
+.spline-bg a[href*="spline"],
+.spline-bg #logo,
+.spline-bg [class*="logo"],
+canvas + div a {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+
+
+/* ─── Layout Components ─── */
+.os-container {
+  display: flex;
+  height: 100vh;
+  padding: 1.5rem;
+  gap: 1.5rem;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur) var(--glass-saturate);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--r-lg);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15); /* Softer ambient shadow */
+  overflow: hidden;
+  position: relative;
+  transition: opacity 0.8s var(--t-spring), 
+              filter 0.8s var(--t-spring), 
+              transform 0.8s var(--t-spring), 
+              background 1.5s ease-in-out, 
+              border 1.5s ease-in-out;
+}
+
+/* Sub-panel float drift */
+@keyframes float-drift {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-4px) translateX(2px); }
+}
+
+.floating-panel {
+  animation: float-drift 8s ease-in-out infinite;
+}
+
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+}
+
+/* ─── Typography ─── */
+h1, h2, h3 {
+  font-family: 'Satoshi', sans-serif;
+  color: var(--text-high);
+  letter-spacing: -0.02em;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─── Buttons & Interactions ─── */
+.btn-glass {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-glass);
+  color: var(--text-high);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--r-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--t-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-glass:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: var(--accent-2);
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.mic-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: var(--r-sm);
+  color: var(--text-low);
+  transition: all var(--t-fast);
+}
+
+.mic-toggle:hover {
+  color: var(--accent);
+  background: rgba(255,255,255,0.05);
+}
+
+.mic-toggle.active {
+  color: #ef4444; /* Pulse red override */
+}
+
+/* ─── Animations ─── */
+@keyframes orb-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+.animate-pulse-slow {
+  animation: orb-pulse 4s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.skeleton-loader {
+  background: rgba(255, 255, 255, 0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-loader::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 100%
+  );
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+/* ─── Kinetic Typography ─── */
+.kinetic-text {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.kinetic-text span {
+  display: inline-block;
+  animation: slide-up-reveal var(--t-spring) forwards;
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+@keyframes slide-up-reveal {
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ─── Morphing & Transitions Utilities ─── */
+.morph-bg {
+  transition: background 0.4s var(--t-spring), border-radius 0.4s var(--t-spring);
+}
+
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+}
+
+.reveal-active {
+  transition: all 0.6s var(--t-spring);
+}
